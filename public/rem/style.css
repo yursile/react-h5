@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,700,800);
+
 body,
 html {
   width: 100%;
@@ -50,279 +52,382 @@ html {
   }
 }
 
-.loading {
-  left: 0;
-  top: 0;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #5889da;
-}
-
-.loading .loading_player {
-  width: 2.97rem;
-  height: 1.7rem;
-  left: 1.24rem;
-  top: 3.56rem;
-  position: absolute;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  background: url(../img/loading.png) no-repeat;
-  -webkit-animation: loading 1s linear infinite;
-  animation: loading 1s linear infinite;
-  -webkit-animation-timing-function: step-start;
-  animation-timing-function: step-start;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  z-index: 9999;
-}
-
-@-webkit-keyframes loading {
-  0% {
-    background-position: 0 0;
-  }
-
-  50% {
-    background-position: -2.97rem 0;
-  }
-
-  100% {
-    background-position: -5.94rem 0;
-  }
-}
-
-@keyframes loading {
-  0% {
-    background-position: 0 0;
-  }
-
-  50% {
-    background-position: -2.97rem 0;
-  }
-
-  100% {
-    background-position: -5.94rem 0;
-  }
-}
-
-.loading .progress-num {
-  color: #fff;
-  font-family: 微软雅黑;
-  font-weight: bold;
-  font-size: 0.5rem;
-  left: 0;
-  top: 5.88rem;
-  position: absolute;
-  right: 0;
-  margin: auto;
-  width: 100%;
-  text-align: center;
-}
-
-#icon {
-  width: 100%;
-  height: 100%;
-}
-
-#heading {
-  padding: 0.2rem 0.2rem 0.4rem;
-  background: #024;
-}
-
-#heading > a {
-  margin-top: 0.3rem;
-  display: inline-block;
-  text-decoration: none;
-  color: #FFF;
-  background: #036;
-  padding: 0.25rem 0.3rem;
-  font-size: 0.22rem;
-}
-
-h1 {
-  font-size: 0.44rem;
-  line-height: 1.5;
-  font-weight: 700;
-}
-
-h2 {
-  font-size: 0.24rem;
-  line-height: 1.5;
-  font-weight: normal;
-}
-
-p {
-  font-size: 0.18rem;
-  line-height: 1.5;
-  font-weight: normal;
-}
-
-p > a {
-  color: #FFF;
-  text-decoration: none;
-  padding-bottom: 0.02rem;
-  border-bottom: 0.01rem dashed #FFF;
-}
-
-#icon {
-  display: block;
+*,
+*:after,
+*:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  width: 100%;
-  height: 8.5rem;
-  background: #FFF;
-  margin: auto;
-  padding: 0.6rem;
 }
 
-#options {
-  margin-top: 0.5rem;
-  margin-bottom: 0.4rem;
-  text-align: center;
+html {
+  height: 100%;
 }
 
-.option {
-  width: 4rem;
-  display: block;
-  margin: auto;
-  overflow: hidden;
-  text-align: left;
+body {
+  height: 100%;
+  background: #444;
+  color: #fffce1;
+  font-family: 'Raleway', Arial, sans-serif;
 }
 
-label {
-  text-align: right;
-  display: inline-block;
-  font-size: 0.2rem;
-  width: 1rem;
+#app {
+  height: 100%;
 }
 
-select {
-  font-family: Arial;
-  font-size: 0.2rem;
-  font-weight: normal;
-  padding: 0.1rem;
-  color: #333;
-  display: inline-block;
-  margin: 0.1rem;
-}
-
-#links {
-  margin-bottom: 0.8rem;
-}
-
-#links,
-#links > a {
-  font-family: Arial;
-  font-size: 0.14rem;
-  color: #FFF;
+a {
+  color: #4e4a46;
   text-decoration: none;
 }
 
-@media (max-width: 500px) {
-  #heading {
-    padding: 0.1rem 0.1rem 0.3rem;
-  }
+a:hover,
+a:focus {
+  color: #c94e50;
+}
 
-  #heading > a {
-    margin-top: 0.15rem;
-    padding: 0.15rem 0.2rem;
-    font-size: 0.16rem;
+main {
+  height: 100%;
+  padding: 3em 2em;
+  text-align: center;
+  background: #b4bad2;
+  overflow: scroll;
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 3.75em;
+}
+
+.description {
+  max-width: 20em;
+  margin: 1.2em auto 1em;
+  line-height: 1.3em;
+  font-weight: 400;
+}
+
+.demo-buttons {
+  font-size: 1em;
+  max-width: 12rem;
+  margin: 2em auto 3em;
+  padding: 0 10em;
+}
+
+.demo-buttons a {
+  display: inline-block;
+  margin: 0.75em;
+  padding: 1.35em 1.1em;
+  width: 15em;
+  background: #fffce1;
+  text-transform: uppercase;
+  letter-spacing: 0.01rem;
+  font-weight: 800;
+  border-top-left-radius: 0.2rem 0.5rem;
+  border-top-right-radius: 0.2rem 0.5rem;
+  border-bottom-right-radius: 0.2rem 0.5rem;
+  border-bottom-left-radius: 0.2rem 0.5rem;
+  cursor: pointer;
+}
+
+.demo-buttons a.current-demo {
+  background: #c94e50;
+  color: #fffce1;
+}
+
+.side-button {
+  display: inline-block;
+  width: 5em;
+  height: 2.5em;
+  line-height: 2.5em;
+  cursor: pointer;
+  background: #fffce1;
+  text-transform: uppercase;
+  letter-spacing: 0.01rem;
+  font-size: 0.8em;
+  font-weight: 800;
+}
+
+.side-button.left {
+  border-top-left-radius: 0.1rem;
+  border-bottom-left-radius: 0.1rem;
+}
+
+.side-button.right {
+  border-top-right-radius: 0.1rem;
+  border-bottom-right-radius: 0.1rem;
+}
+
+.side-button.active {
+  background: #c94e50;
+  color: #fffce1;
+}
+
+@media screen and (max-width: 40em) {
+  main {
+    font-size: 80%;
   }
 
   h1 {
-    font-size: 0.34rem;
+    padding-top: 1em;
+    font-size: 2.5em;
   }
 
-  h2 {
-    font-size: 0.18rem;
-  }
-
-  p {
-    font-size: 0.16rem;
-  }
-
-  #icon {
-    height: 1.5rem;
-    padding: 0.3rem;
-  }
-
-  #options {
-    margin-top: 0.35rem;
-  }
-
-  .option {
-    width: 3rem;
-  }
-
-  label {
-    width: 0.75rem;
-  }
-
-  select {
-    padding: 0.08rem;
-  }
-
-  label,
-  select {
-    font-size: 0.14rem;
-  }
-
-  #links,
-  #links > a {
-    font-size: 0.12rem;
+  .demo-buttons {
+    max-width: 9rem;
+    padding: 0 2em;
   }
 }
 
-@media (max-width: 350px) {
-  #heading > a {
-    font-size: 0.14rem;
-  }
-
-  h1 {
-    font-size: 0.3rem;
-  }
-
-  h2 {
-    font-size: 0.16rem;
-  }
-
-  p {
-    font-size: 0.14rem;
-  }
-
-  #icon {
-    height: 1.2rem;
-    padding: 0.2rem;
-  }
-
-  #options {
-    margin-top: 0.25rem;
-  }
-
-  .option {
-    width: 8.5rem;
-  }
-
-  label {
-    width: 0.5rem;
-  }
-
-  select {
-    padding: 0.06rem;
-  }
-
-  label,
-  select {
-    font-size: 0.12rem;
-  }
-
-  #links,
-  #links > a {
-    font-size: 0.1rem;
-  }
+.bm-burger-button {
+  position: fixed;
+  width: 0.36rem;
+  height: 0.3rem;
+  left: 0.36rem;
+  top: 0.36rem;
 }
 
-.optins {
-  display: none;
+.right .bm-burger-button {
+  left: initial;
+  right: 0.36rem;
+}
+
+.bm-burger-bars {
+  background: #373a47;
+}
+
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+.bm-menu {
+  background: #373a47;
+}
+
+.bm-menu a {
+  color: #b8b7ad;
+}
+
+.bm-menu a:hover,
+.bm-menu a:focus {
+  color: #c94e50;
+}
+
+.bm-item-list a {
+  padding: 0.8em;
+}
+
+.bm-item-list a span {
+  margin-left: 0.1rem;
+  font-weight: 700;
+}
+
+.menu-1 .bm-cross {
+  background: #bdc3c7;
+}
+
+.menu-1 .bm-menu {
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+.menu-2 .bm-cross {
+  background: #999;
+}
+
+.menu-2 .bm-menu {
+  padding: 3.4em 1em 0;
+}
+
+.menu-2 a {
+  padding: 1em;
+}
+
+.menu-2 i {
+  font-size: 1.7em;
+  vertical-align: middle;
+  color: #282a35;
+}
+
+.menu-3 .bm-cross {
+  background: #888;
+}
+
+.menu-3 .bm-menu {
+  padding: 2em 1em;
+  font-size: 1.15em;
+}
+
+.menu-3 i {
+  opacity: 0.5;
+}
+
+.menu-3 span {
+  text-transform: uppercase;
+  letter-spacing: 0.01rem;
+  font-size: 0.75em;
+}
+
+.menu-4 .bm-cross {
+  background: #888;
+}
+
+.menu-4 h2 {
+  margin: 0 auto;
+  padding: 2em 1em;
+  color: rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: inset 0 -0.01rem rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -0.01rem rgba(0, 0, 0, 0.2);
+}
+
+.menu-4 h2 i {
+  margin-left: 0.2em;
+}
+
+.menu-4 h2 span {
+  font-size: 1.6em;
+  font-weight: 700;
+}
+
+.menu-4 a {
+  padding: 1em;
+  text-transform: uppercase;
+  -webkit-transition: background 0.3s, -webkit-box-shadow 0.3s;
+  transition: background 0.3s, -webkit-box-shadow 0.3s;
+  transition: background 0.3s, box-shadow 0.3s;
+  transition: background 0.3s, box-shadow 0.3s, -webkit-box-shadow 0.3s;
+  -webkit-box-shadow: inset 0 -0.01rem rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -0.01rem rgba(0, 0, 0, 0.2);
+}
+
+.menu-4 a span {
+  letter-spacing: 0.01rem;
+  font-weight: 400;
+}
+
+.menu-4 a:hover,
+.menu-4 a:focus {
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 -0.01rem rgba(0, 0, 0, 0);
+  box-shadow: inset 0 -0.01rem rgba(0, 0, 0, 0);
+  color: #b8b7ad;
+}
+
+#slide .bm-cross,
+#stack .bm-cross {
+  background: #bdc3c7;
+}
+
+#slide .bm-menu,
+#stack .bm-menu {
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+#bubble .bm-cross,
+#push .bm-cross {
+  background: #999;
+}
+
+#bubble .bm-menu,
+#push .bm-menu {
+  padding: 3.4em 1em 0;
+}
+
+#bubble a,
+#push a {
+  padding: 1em;
+}
+
+#bubble i,
+#push i {
+  font-size: 1.7em;
+  vertical-align: middle;
+  color: #282a35;
+}
+
+#elastic .bm-cross {
+  background: #888;
+}
+
+#elastic .bm-menu {
+  padding: 2em 1em;
+  font-size: 1.15em;
+}
+
+#elastic i {
+  opacity: 0.5;
+}
+
+#elastic span {
+  text-transform: uppercase;
+  letter-spacing: 0.01rem;
+  font-size: 0.75em;
+}
+
+#scaleDown .bm-cross,
+#scaleRotate .bm-cross,
+#pushRotate .bm-cross,
+#fallDown .bm-cross {
+  background: #888;
+}
+
+#scaleDown h2,
+#scaleRotate h2,
+#pushRotate h2,
+#fallDown h2 {
+  margin: 0 auto;
+  padding: 2em 1em;
+  color: rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: inset 0 -0.01rem rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -0.01rem rgba(0, 0, 0, 0.2);
+}
+
+#scaleDown h2 i,
+#scaleRotate h2 i,
+#pushRotate h2 i,
+#fallDown h2 i {
+  margin-left: 0.2em;
+}
+
+#scaleDown h2 span,
+#scaleRotate h2 span,
+#pushRotate h2 span,
+#fallDown h2 span {
+  font-size: 1.6em;
+  font-weight: 700;
+}
+
+#scaleDown a,
+#scaleRotate a,
+#pushRotate a,
+#fallDown a {
+  padding: 1em;
+  text-transform: uppercase;
+  -webkit-transition: background 0.3s, -webkit-box-shadow 0.3s;
+  transition: background 0.3s, -webkit-box-shadow 0.3s;
+  transition: background 0.3s, box-shadow 0.3s;
+  transition: background 0.3s, box-shadow 0.3s, -webkit-box-shadow 0.3s;
+  -webkit-box-shadow: inset 0 -0.01rem rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -0.01rem rgba(0, 0, 0, 0.2);
+}
+
+#scaleDown a span,
+#scaleRotate a span,
+#pushRotate a span,
+#fallDown a span {
+  letter-spacing: 0.01rem;
+  font-weight: 400;
+}
+
+#scaleDown a:hover,
+#scaleRotate a:hover,
+#pushRotate a:hover,
+#fallDown a:hover,
+#scaleDown a:focus,
+#scaleRotate a:focus,
+#pushRotate a:focus,
+#fallDown a:focus {
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 -0.01rem rgba(0, 0, 0, 0);
+  box-shadow: inset 0 -0.01rem rgba(0, 0, 0, 0);
+  color: #b8b7ad;
 }

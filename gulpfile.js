@@ -136,7 +136,7 @@ gulp.task('connect',function(){
 gulp.task('browserify', function() {
   browserify('./app/js/index.js')
     .transform("babelify", {
-      presets: ["es2015"]
+      presets: ["es2015","react"]
     })
     .bundle()
     .pipe(source('bundle.js'))

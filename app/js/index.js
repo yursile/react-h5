@@ -1,87 +1,165 @@
- window.onload = function() {
+import React from 'react';
+import ReactDOM from 'react-dom';
+import BurgerMenu from 'react-burger-menu';
+import classNames from 'classnames';
 
-   
+let MenuWrap = React.createClass({
 
+  getInitialState() {
+    return {hidden : false};
+  },
 
-      var svgMorpheus = new SVGMorpheus('#icon'),
-          selIcon     = document.getElementById('selIcon'),
-          selEasing   = document.getElementById('selEasing'),
-          selDuration = document.getElementById('selDuration'),
-          selRotation = document.getElementById('selRotation'),
-          icons={
-            '3d_rotation':'3D Rotation',
-            "myIconSet":'myIconSet'
-          },
-          easings={
-            'circ-in': 'Circ In','circ-out': 'Circ Out','circ-in-out': 'Circ In/Out',
-            'cubic-in': 'Cubic In', 'cubic-out': 'Cubic Out', 'cubic-in-out': 'Cubic In/Out',
-            'elastic-in': 'Elastic In', 'elastic-out': 'Elastic Out', 'elastic-in-out': 'Elastic In/Out',
-            'expo-in': 'Expo In', 'expo-out': 'Expo Out', 'expo-in-out': 'Expo In/Out',
-            'linear': 'Linear',
-            'quad-in': 'Quad In', 'quad-out': 'Quad Out', 'quad-in-out': 'Quad In/Out',
-            'quart-in': 'Quart In', 'quart-out': 'Quart Out', 'quart-in-out': 'Quart In/Out',
-            'quint-in': 'Quint In', 'quint-out': 'Quint Out', 'quint-in-out': 'Quint In/Out',
-            'sine-in': 'Sine In','sine-out': 'Sine Out','sine-in-out': 'Sine In/Out'
-          },
-          durations=[250, 500, 750, 1000, 5000],
-          rotations={
-            'clock': 'Clockwise',
-            'counterclock': 'Counterclockwise',
-            'random': 'Random',
-            'none': 'None'
-          };
+  componentWillReceiveProps(nextProps) {
+    const sideChanged = this.props.children.props.right !== nextProps.children.props.right;
 
-      var key, i, len;
+    if (sideChanged) {
+      this.setState({hidden : true});
 
-      for(key in icons) {
-        selIcon.options[selIcon.options.length]=new Option(icons[key], key);
-      }
+      setTimeout(() => {
+        this.show();
+      }, this.props.wait);
+    }
+  },
 
-      for(key in easings) {
-        selEasing.options[selEasing.options.length]=new Option(easings[key], key);
-      }
+  show() {
+    this.setState({hidden : false});
+  },
 
-      for(i=0, len=durations.length;i<len;i++) {
-        selDuration.options[selDuration.options.length]=new Option(durations[i], durations[i]);
-      }
+  render() {
+    let style;
 
-      for(key in rotations) {
-        selRotation.options[selRotation.options.length]=new Option(rotations[key], key);
-      }
+    if (this.state.hidden) {
+      style = {display: 'none'};
+    }
 
-      selIcon.selectedIndex=selIcon.options.length-1;
-      selEasing.selectedIndex=15;
-      selDuration.selectedIndex=2;
-      selRotation.selectedIndex=0;
+    return (
+      <div style={style} className={this.props.side}>
+        {this.props.children}
+      </div>
+    );
+  }
+});
 
-      function getSelValue(sel) {
-        return sel.options[sel.selectedIndex].value;
-      }
+let Demo = React.createClass({
 
-      var timeoutInstance, manualChange=false;
-      function onIconChange() {
-        clearTimeout(timeoutInstance);
-        var valIcon=getSelValue(selIcon),
-            valEasing=getSelValue(selEasing),
-            valDuration=getSelValue(selDuration),
-            valRotation=getSelValue(selRotation);
-        svgMorpheus.to(valIcon, {duration: valDuration, easing: valEasing, rotation: valRotation},!manualChange?launchTimer:null);
-      }
-      function timerTick() {
-        var selIndex=selIcon.selectedIndex;
-        while(selIndex===selIcon.selectedIndex) {
-          selIndex=Math.round(Math.random()*(selIcon.options.length-1));
-        }
-        selIcon.selectedIndex=selIndex;
-        onIconChange();
-      }
-      function launchTimer() {
-        timeoutInstance=setTimeout(timerTick, 1000);
-      }
-      selIcon.addEventListener('change',onIconChange);
-      selIcon.addEventListener('click',function(){
-        clearTimeout(timeoutInstance);
-        manualChange=true;
-      });
-      launchTimer();
+  changeMenu(menu) {
+    this.setState({currentMenu: menu});
+  },
+
+  changeSide(side) {
+    this.setState({side});
+  },
+
+  getItems() {
+    let items;
+
+    switch (this.props.menus[this.state.currentMenu].items) {
+      case 1:
+        items = [
+          <a key="0" href=""><i className="fa fa-fw fa-star-o"></i><span>Favorites</span></a>,
+          <a key="1" href=""><i className="fa fa-fw fa-bell-o"></i><span>Alerts</span></a>,
+          <a key="2" href=""><i className="fa fa-fw fa-envelope-o"></i><span>Messages</span></a>,
+          <a key="3" href=""><i className="fa fa-fw fa-comment-o"></i><span>Comments</span></a>,
+          <a key="4" href=""><i className="fa fa-fw fa-bar-chart-o"></i><span>Analytics</span></a>,
+          <a key="5" href=""><i className="fa fa-fw fa-newspaper-o"></i><span>Reading List</span></a>
+        ];
+        break;
+      case 2:
+        items = [
+          <h2 key="0"><i className="fa fa-fw fa-inbox fa-2x"></i><span>Sidebar</span></h2>,
+          <a key="1" href=""><i className="fa fa-fw fa-database"></i><span>Data Management</span></a>,
+          <a key="2" href=""><i className="fa fa-fw fa-map-marker"></i><span>Location</span></a>,
+          <a key="3" href=""><i className="fa fa-fw fa-mortar-board"></i><span>Study</span></a>,
+          <a key="4" href=""><i className="fa fa-fw fa-picture-o"></i><span>Collections</span></a>,
+          <a key="5" href=""><i className="fa fa-fw fa-money"></i><span>Credits</span></a>
+        ];
+        break;
+      default:
+        items = [
+          <a key="0" href=""><i className="fa fa-fw fa-star-o"></i><span>Favorites</span></a>,
+          <a key="1" href=""><i className="fa fa-fw fa-bell-o"></i><span>Alerts</span></a>,
+          <a key="2" href=""><i className="fa fa-fw fa-envelope-o"></i><span>Messages</span></a>,
+          <a key="3" href=""><i className="fa fa-fw fa-comment-o"></i><span>Comments</span></a>,
+          <a key="4" href=""><i className="fa fa-fw fa-bar-chart-o"></i><span>Analytics</span></a>,
+          <a key="5" href=""><i className="fa fa-fw fa-newspaper-o"></i><span>Reading List</span></a>
+        ];
+    }
+
+    return items;
+  },
+
+  getMenu() {
+    const Menu = BurgerMenu[this.state.currentMenu];
+    const items = this.getItems();
+    let jsx;
+
+    if (this.state.side === 'right') {
+      jsx = (
+        <MenuWrap wait={20} side={this.state.side}>
+          <Menu id={this.state.currentMenu} pageWrapId={"page-wrap"} outerContainerId={"outer-container"} right>
+            {items}
+          </Menu>
+        </MenuWrap>
+      );
+    } else {
+      jsx = (
+        <MenuWrap wait={20}>
+          <Menu id={this.state.currentMenu} pageWrapId={"page-wrap"} outerContainerId={"outer-container"}>
+            {items}
+          </Menu>
+        </MenuWrap>
+      );
+    }
+
+    return jsx;
+  },
+
+  getInitialState() {
+    return {
+      currentMenu: 'slide',
+      side: 'left'
     };
+  },
+
+  render() {
+    const buttons = Object.keys(this.props.menus).map((menu) => {
+      return (
+        <a key={menu}
+          className={classNames({'current-demo': menu === this.state.currentMenu})}
+          onClick={this.changeMenu.bind(this, menu)}>
+          {this.props.menus[menu].buttonText}
+        </a>
+      );
+    });
+
+    return (
+      <div id="outer-container" style={{height: '100%'}}>
+        {this.getMenu()}
+        <main id="page-wrap">
+          <h1><a href="https://github.com/negomi/react-burger-menu">react-burger-menu</a></h1>
+          <a className={classNames({'side-button': true, 'left': true, 'active': this.state.side === 'left'})} onClick={this.changeSide.bind(this, 'left')}>Left</a>
+          <a className={classNames({'side-button': true, 'right': true, 'active': this.state.side === 'right'})} onClick={this.changeSide.bind(this, 'right')}>Right</a>
+          <h2 className="description">An off-canvas sidebar React component with a collection of effects and styles using CSS transitions and SVG path animations.</h2>
+          <nav className="demo-buttons">
+            {buttons}
+          </nav>
+          Inspired by <a href="https://github.com/codrops/OffCanvasMenuEffects">Off-Canvas Menu Effects</a> and <a href="https://github.com/codrops/SidebarTransitions">Sidebar Transitions</a> by Codrops
+        </main>
+      </div>
+    );
+  }
+});
+
+const menus = {
+  slide: {buttonText: 'Slide', items: 1},
+  stack: {buttonText: 'Stack', items: 1},
+  elastic: {buttonText: 'Elastic', items: 1},
+  bubble: {buttonText: 'Bubble', items: 1},
+  push: {buttonText: 'Push', items: 1},
+  pushRotate: {buttonText: 'Push Rotate', items: 2},
+  scaleDown: {buttonText: 'Scale Down', items: 2},
+  scaleRotate: {buttonText: 'Scale Rotate', items: 2},
+  fallDown: {buttonText: 'Fall Down', items: 2}
+};
+
+ReactDOM.render(<Demo menus={menus} />, document.getElementById('all'));

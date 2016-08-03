@@ -1,5 +1,5 @@
 {
-  "name": "h5-svg",
+  "name": "react-h5",
   "version": "1.0.0",
   "description": "a h5 template integrated with es6,pixi,and so on",
   "main": "index.js",
@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
     "babelify": "^7.2.0",
     "browserify": "^12.0.1",
     "cssgrace": "^3.0.0",
@@ -27,14 +28,15 @@
     "less-plugin-clean-css": "^1.5.1",
     "merge-stream": "^1.0.0",
     "normalize.css": "^3.0.3",
-    "pixi.js": "^3.0.11",
     "postcss-px2rem": "^0.3.0",
     "svg-morpheus": "^0.3.0",
     "tween.js": "^16.3.4",
     "vinyl-source-stream": "^1.1.0",
-    "vivus": "^0.3.1"
+    "vivus": "^0.3.1",
+    "reactify": "^1.1.1"
   },
   "dependencies": {
+    "react-burger-menu": "^1.10.1",
     "zepto": "^1.0.1"
   }
 }
