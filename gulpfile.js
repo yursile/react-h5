@@ -18,7 +18,6 @@ var gulp = require('gulp'),
     autoprefix = new LessPluginAutoPrefix({
       browsers: ["ie >= 8", "ie_mob >= 10", "ff >= 26", "chrome >= 30", "safari >= 6", "opera >= 23", "ios >= 5", "android >= 2.3", "bb >= 10"]
     });
-
 var postcss = require('gulp-postcss');
 var px2rem = require('postcss-px2rem');
 var svgmin = require('gulp-svgmin');
@@ -133,10 +132,21 @@ gulp.task('connect',function(){
   });
 });
 
+
+/**
+ * notice that stage-2 can handle Rest and Spread Properties
+ *
+ * such as ... operator
+ *
+ * transform-decorators-legacy can handle decorator which is new feature
+ */
 gulp.task('browserify', function() {
   browserify('./app/js/index.js')
     .transform("babelify", {
-      presets: ["es2015","react"]
+      presets: ["es2015","react","stage-2"],
+      plugins: [
+      "transform-decorators-legacy"
+      ]
     })
     .bundle()
     .pipe(source('bundle.js'))
